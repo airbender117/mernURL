@@ -1,0 +1,15 @@
+{
+  "name": "mern-url-shortner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server":"cd ~/mern-url-shortner/server/ && npx nodemon index.js",
+    "client": "cd ~/mern-url-shortner/client/ && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

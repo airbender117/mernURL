@@ -1,0 +1,15 @@
+# Ignore all node_modules directories anywhere in the repo
+**/node_modules/
+
+# Ignore all .env files anywhere in the repo
+**/.env
+**/.env.*
+
+# Optional: Ignore log files
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# Optional: OS/system files
+.DS_Store
+Thumbs.db
