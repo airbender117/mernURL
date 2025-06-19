@@ -1,56 +1,44 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
-    const [shortid, setShortid] = useState('')
+  const [shortId, setShortId] = useState("");
 
-    const handleShortidInput = async (e) => {
-        e.preventDefault()
+const handleShortIdInput = (e) => {
+  e.preventDefault();
 
-        try {
-            const response = await fetch(`http://localhost:9090/${shortid}`, {
-                method: 'POST'
-            })
+  if (!shortId) return alert("Please enter a short ID");
 
-            const data = await response.json()
+  // Redirect browser to backend, which will perform the real redirect
+  window.location.href = `http://localhost:9090/redirect/${shortId}`;
+};
 
-            if (response.ok && data.redirectURL) {
-                // Redirect to the original URL
-                window.location.href = data.redirectURL
-            } else {
-                alert("Short ID not found!")
-            }
-        } catch (error) {
-            console.error('Error redirecting:', error)
-            alert("An error occurred")
-        }
-    }
 
-    return (
-        <>
-            <form onSubmit={handleShortidInput}>
-                <div>
-                    <label>Short ID</label>
-                    <br />
-                    <input
-                        placeholder='Enter your short id here'
-                        type='text'
-                        required
-                        value={shortid}
-                        name='shortid'
-                        onChange={(e) => setShortid(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <button type="submit">Enter</button>
-                </div>
-            </form>
+  return (
+    <>
+      <form onSubmit={handleShortIdInput}>
+        <div>
+          <label>Short ID</label>
+          <br />
+          <input
+            placeholder="Enter your short id here"
+            type="text"
+            required
+            value={shortId}
+            name="shortId"
+            onChange={(e) => setShortId(e.target.value)}
+          />
+        </div>
+        <div>
+          <button type="submit">Enter</button>
+        </div>
+      </form>
 
-            <div>
-                <Link to='/login'>
-                    <button>Go to login page</button>
-                </Link>
-            </div>
-        </>
-    )
+      <div>
+        <Link to="/login">
+          <button>Go to login page</button>
+        </Link>
+      </div>
+    </>
+  );
 }
